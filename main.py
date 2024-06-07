@@ -20,6 +20,8 @@ class Transaction:
         self.recipient = recipient
         self.amount = amount
 
+    def is_valid(self):
+        return self.sender != self.recipient and self.amount > 0
     def __str__(self):
         return f"{self.sender} -> {self.recipient}: {self.amount}"
 
@@ -77,8 +79,6 @@ def main():
         print(f"Transactions: {[str(tx) for tx in block_to_add.transactions]}")
     return blockchain
 
-
-
 def is_chain_valid(blockchain):
     for i in range(1, len(blockchain)):
         current_block = blockchain[i]
@@ -89,6 +89,12 @@ def is_chain_valid(blockchain):
 
         if current_block.previous_hash != previous_block.hash:
             return False
+
+        for transaction in current_block.transactions:
+            if not transaction.is_valid():
+                return False
+
+    return True
 
     return True
 
