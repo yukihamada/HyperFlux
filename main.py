@@ -1,6 +1,31 @@
 import hashlib
 import time
 
+class ParallelTransactionProcessor:
+    def __init__(self, dag, bft_network):
+        self.dag = dag
+        self.bft_network = bft_network
+
+    def process_transactions(self, transactions):
+        for transaction in transactions:
+            self.dag.add_transaction(transaction)
+        valid_transactions = self.dag.get_valid_transactions()
+        return valid_transactions
+
+class BFTNetwork:
+    def __init__(self, num_nodes):
+        self.nodes = [BFTNode(i) for i in range(num_nodes)]
+
+    def broadcast_block(self, block):
+        for node in self.nodes:
+            node.receive_block(block)
+
+    def is_network_valid(self):
+        for node in self.nodes:
+            if not is_chain_valid(node.blockchain):
+                return False
+        return True
+
 class DAG:
     def __init__(self):
         self.nodes = []
@@ -12,8 +37,8 @@ class DAG:
                 new_node.add_parent(node)
         self.nodes.append(new_node)
 
-    def get_valid_transactions(self):
-        return [node.transaction for node in self.nodes if node.is_valid()]
+
+
 
 class DAGNode:
     def __init__(self, transaction):
@@ -30,58 +55,53 @@ class DAGNode:
 class BFTNode:
     def __init__(self, node_id):
         self.node_id = node_id
-        self.blockchain = []
+
+
+
+
+
+
+def create_genesis_block():
+    genesis_transactions = [Transaction('system', 'user', 50)]
+    return Block(0, '0', int(time.time()), genesis_transactions, calculate_hash(0, '0', int(time.time()), genesis_transactions))
+
+
+    genesis_transactions = [Transaction('system', 'user', 50)]
+    return Block(0, '0', int(time.time()), genesis_transactions, calculate_hash(0, '0', int(time.time()), genesis_transactions))
+
+
+
 
     def receive_block(self, block):
         self.blockchain.append(block)
 
-    def is_block_valid(self, block):
-        # ブロックの検証ロジックを追加
-        return True
-
-    def broadcast_block(self, block, nodes):
-        for node in nodes:
-            if node.node_id != self.node_id:
-                node.receive_block(block)
-
-class TransactionPool:
-    def __init__(self):
-        self.transactions = []
-
-    def add_transaction(self, transaction):
-        self.transactions.append(transaction)
-
-    def clear(self):
-        self.transactions = []
-
-    def get_transactions(self):
-        return self.transactions
-
-class Transaction:
-    def __init__(self, sender, recipient, amount):
-        self.sender = sender
 def main():
     blockchain = [create_genesis_block()]
     previous_block = blockchain[0]
     transaction_pool = TransactionPool()
     dag = DAG()
+    bft_network = BFTNetwork(num_nodes=5)
+    processor = ParallelTransactionProcessor(dag, bft_network)
 
     num_of_blocks_to_add = 10
 
     for i in range(1, num_of_blocks_to_add + 1):
         transaction_pool.add_transaction(Transaction(f"user_{i}", f"user_{i+1}", i * 10))
         transactions = transaction_pool.get_transactions()
-        for transaction in transactions:
-            dag.add_transaction(transaction)
-        valid_transactions = dag.get_valid_transactions()
+        valid_transactions = processor.process_transactions(transactions)
         block_to_add = mine_block(previous_block, valid_transactions, difficulty=2)
         blockchain.append(block_to_add)
         previous_block = block_to_add
         transaction_pool.clear()
+        bft_network.broadcast_block(block_to_add)
         print(f"Block #{block_to_add.index} has been added to the blockchain!")
         print(f"Hash: {block_to_add.hash}")
         print(f"Transactions: {[str(tx) for tx in block_to_add.transactions]}")
-    return blockchain
+
+    print('Is BFT network valid?', bft_network.is_network_valid())
+
+
+
 
 
     genesis_transactions = [Transaction("system", "user", 50)]
