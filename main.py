@@ -1,6 +1,44 @@
 import hashlib
 import time
 
+class Transaction:
+    def __init__(self, sender, receiver, amount):
+        self.sender = sender
+        self.receiver = receiver
+        self.amount = amount
+        self.timestamp = time.time()
+
+    def __repr__(self):
+
+
+    def is_valid(self):
+        # トランザクションの検証ロジックを追加
+        return True
+
+
+
+
+
+
+
+
+class Block:
+    def __init__(self, index, previous_hash, timestamp, transactions, hash):
+        self.index = index
+        self.previous_hash = previous_hash
+        self.timestamp = timestamp
+        self.transactions = transactions
+        self.hash = hash
+
+    def __repr__(self):
+        return f"Block({self.index}, {self.previous_hash}, {self.timestamp}, {self.transactions}, {self.hash})"
+
+
+def calculate_hash(index, previous_hash, timestamp, transactions):
+    value = f"{index}{previous_hash}{timestamp}{transactions}"
+    return hashlib.sha256(value.encode('utf-8')).hexdigest()
+
+
 class ParallelTransactionProcessor:
     def __init__(self, dag, bft_network):
         self.dag = dag
@@ -20,6 +58,15 @@ class BFTNetwork:
         for node in self.nodes:
             node.receive_block(block)
 
+
+    def get_valid_transactions(self):
+        valid_transactions = []
+        for node in self.nodes:
+            if node.is_valid():
+                valid_transactions.append(node.transaction)
+        return valid_transactions
+
+
     def is_network_valid(self):
         for node in self.nodes:
             if not is_chain_valid(node.blockchain):
@@ -38,6 +85,13 @@ class DAG:
         self.nodes.append(new_node)
 
 
+    def get_valid_transactions(self):
+        valid_transactions = []
+        for node in self.nodes:
+            if node.is_valid():
+                valid_transactions.append(node.transaction)
+        return valid_transactions
+
 
 
 class DAGNode:
@@ -55,62 +109,14 @@ class DAGNode:
 class BFTNode:
     def __init__(self, node_id):
         self.node_id = node_id
-
-
-
-
-
-
-def create_genesis_block():
-    genesis_transactions = [Transaction('system', 'user', 50)]
-    return Block(0, '0', int(time.time()), genesis_transactions, calculate_hash(0, '0', int(time.time()), genesis_transactions))
-
-
-    genesis_transactions = [Transaction('system', 'user', 50)]
-    return Block(0, '0', int(time.time()), genesis_transactions, calculate_hash(0, '0', int(time.time()), genesis_transactions))
-
-
-
+        self.blockchain = []
 
     def receive_block(self, block):
         self.blockchain.append(block)
 
-def main():
-    blockchain = [create_genesis_block()]
-    previous_block = blockchain[0]
-    transaction_pool = TransactionPool()
-    dag = DAG()
-    bft_network = BFTNetwork(num_nodes=5)
-    processor = ParallelTransactionProcessor(dag, bft_network)
-
-    num_of_blocks_to_add = 10
-
-    for i in range(1, num_of_blocks_to_add + 1):
-        transaction_pool.add_transaction(Transaction(f"user_{i}", f"user_{i+1}", i * 10))
-        transactions = transaction_pool.get_transactions()
-        valid_transactions = processor.process_transactions(transactions)
-        block_to_add = mine_block(previous_block, valid_transactions, difficulty=2)
-        blockchain.append(block_to_add)
-        previous_block = block_to_add
-        transaction_pool.clear()
-        bft_network.broadcast_block(block_to_add)
-        print(f"Block #{block_to_add.index} has been added to the blockchain!")
-        print(f"Hash: {block_to_add.hash}")
-        print(f"Transactions: {[str(tx) for tx in block_to_add.transactions]}")
-
-    print('Is BFT network valid?', bft_network.is_network_valid())
-
-
-
-
-
-    genesis_transactions = [Transaction("system", "user", 50)]
-    return Block(0, "0", int(time.time()), genesis_transactions, calculate_hash(0, "0", int(time.time()), genesis_transactions))
-
-def create_new_block(previous_block, transactions):
-    index = previous_block.index + 1
-    timestamp = int(time.time())
-    hash = calculate_hash(index, previous_block.hash, timestamp, transactions)
+def create_genesis_block():
+    genesis_transactions = [Transaction('system', 'user', 50)]
+    return Block(0, '0', int(time.time()), genesis_transactions, calculate_hash(0, '0', int(time.time()), genesis_transactions))
 
 def mine_block(previous_block, transactions, difficulty):
     index = previous_block.index + 1
@@ -123,29 +129,29 @@ def mine_block(previous_block, transactions, difficulty):
             return Block(index, previous_block.hash, timestamp, transactions, hash)
         nonce += 1
 
-        nonce += 1
-
-
-
-
 def main():
     blockchain = [create_genesis_block()]
     previous_block = blockchain[0]
-    transaction_pool = TransactionPool()
+    transaction_pool = []
+    dag = DAG()
+    bft_network = BFTNetwork(num_nodes=5)
+    processor = ParallelTransactionProcessor(dag, bft_network)
 
     num_of_blocks_to_add = 10
 
     for i in range(1, num_of_blocks_to_add + 1):
-        transaction_pool.add_transaction(Transaction(f"user_{i}", f"user_{i+1}", i * 10))
-        transactions = transaction_pool.get_transactions()
-        block_to_add = mine_block(previous_block, transactions, difficulty=2)
+        transaction_pool.append(Transaction(f"user_{i}", f"user_{i+1}", i * 10))
+        valid_transactions = processor.process_transactions(transaction_pool)
+        block_to_add = mine_block(previous_block, valid_transactions, difficulty=2)
         blockchain.append(block_to_add)
         previous_block = block_to_add
-        transaction_pool.clear()
+        transaction_pool = []
+        bft_network.broadcast_block(block_to_add)
         print(f"Block #{block_to_add.index} has been added to the blockchain!")
         print(f"Hash: {block_to_add.hash}")
         print(f"Transactions: {[str(tx) for tx in block_to_add.transactions]}")
-    return blockchain
+
+    print('Is BFT network valid?', bft_network.is_network_valid())
 
 def is_chain_valid(blockchain):
     for i in range(1, len(blockchain)):
@@ -164,10 +170,5 @@ def is_chain_valid(blockchain):
 
     return True
 
-    return True
-
-
 if __name__ == "__main__":
-    blockchain = main()
-    print("Is blockchain valid?", is_chain_valid(blockchain))
-
+    main()
