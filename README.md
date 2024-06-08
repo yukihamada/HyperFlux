@@ -11,15 +11,15 @@ HyperFlux will achieve the following goals: **HyperFlux will achieve the followi
 - **BFT (Byzantine Fault Tolerance)**: BFT algorithm implemented to improve fault tolerance in distributed systems.
 - **DAG (Directed Acyclic Graph)**: DAG was implemented to enable parallel processing of transactions and increase throughput.
 
-### ファイルリストと説明
-- **\`CONTRIBUTING.md\`**: プロジェクトへの貢献ガイド。プロジェクトの目的、ビジョン、貢献方法、開発環境のセットアップ手順、コーディングスタイル、コミュニケーションチャンネル、Issue管理、プルリクエストのプロセス、ロードマップ、貢献者の認知とリワード、FAQなどが含まれています。
-- **\`README.md\`**: プロジェクトの概要、目的、セットアップ手順、使用方法、実行時の画面についての情報が記載されています。
-- **\`hyperflux.py\`**: トランザクション処理、ブロックチェーンの管理、DAG（有向非巡回グラフ）を使用した並列トランザクション処理、BFT（ビザンチン障害耐性）ネットワークのシミュレーションを行うスクリプト。
-- **\`test_hyperflux.py\`**: \`unittest\`フレームワークを使用して\`hyperflux.py\`の機能をテストするためのスクリプト。トランザクションの有効性、ジェネシスブロックの作成、ブロックチェーンの有効性をテスト。
-- **\`FAQ.md\`**: HyperFluxプロジェクトに関するよくある質問（FAQ）が記載されています。一般的な質問、技術的な質問、コミュニティ関連の質問、開発関連の質問、ガバナンスとインセンティブ関連の質問、その他の質問に分かれています。
-- **\`__pycache__\`**: Pythonのバイトコードキャッシュが保存されるディレクトリ。
-- **\`requirements.txt\`**: プロジェクトの依存関係が記載されたファイル。Flaskが依存関係として記載されています。
-- **\`wiki\`**: プロジェクトに関する追加のドキュメントが含まれるディレクトリ。
+### 文件列表和描述
+- **\\`CONTRIBUTING.md\\`**: 项目贡献指南。包括项目目标、愿景、贡献方法、安装说明、编码风格、沟通渠道、问题管理、拉取请求流程、路线图、贡献者认可和常见问题解答。
+- **\\`README.md\\`**: 项目概述、目标、安装说明、使用方法和运行时屏幕信息。
+- **\\`hyperflux.py\\`**: 用于事务处理、区块链管理、使用DAG（有向无环图）进行并行事务处理和BFT（拜占庭容错）网络模拟的脚本。
+- **\\`test_hyperflux.py\\`**: 使用\\`unittest\\`框架测试\\`hyperflux.py\\`功能的脚本。测试事务有效性、创世区块创建和区块链有效性。
+- **\\`FAQ.md\\`**: 关于HyperFlux项目的常见问题（FAQ）。包括一般问题、技术问题、社区相关问题、开发相关问题、治理和激励相关问题以及其他问题。
+- **\\`__pycache__\\`**: 存储Python字节码缓存的目录。
+- **\\`requirements.txt\\`**: 列出项目依赖项的文件。Flask被列为依赖项。
+- **\\`wiki\\`**: 包含与项目相关的附加文档的目录。
 
 
 ### Setup Instructions
