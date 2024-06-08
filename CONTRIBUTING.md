@@ -1,4 +1,3 @@
-
 # HyperFluxへの貢献ガイド
 
 ## プロジェクトの概要と目的
@@ -38,20 +37,20 @@ HyperFluxは、コミュニティ主導のプロジェクトであり、分散�
 開発環境のセットアップ手順は以下の通りです：
 
 1. リポジトリをクローンします。
-    \`\`\`sh
-    git clone https://github.com/HyperFlux/HyperFlux.git
+    ```sh
+    git clone https://github.com/yukihamada/HyperFlux.git
     cd HyperFlux
-    \`\`\`
+    ```
 
 2. 必要な依存関係をインストールします。
-    \`\`\`sh
+    ```sh
     npm install
-    \`\`\`
+    ```
 
 3. 開発サーバーを起動します。
-    \`\`\`sh
+    ```sh
     npm start
-    \`\`\`
+    ```
 
 ### コーディングスタイルとガイドライン
 
@@ -73,7 +72,7 @@ HyperFluxは、コミュニティ主導のプロジェクトであり、分散�
 
 Issueの作成方法やバグ報告の手順は以下の通りです：
 
-1. GitHubの[Issues](https://github.com/HyperFlux/HyperFlux/issues)タブに移動します。
+1. GitHubの[Issues](https://github.com/yukihamada/HyperFlux/issues)タブに移動します。
 2. 新しいIssueを作成し、バグの詳細や再現手順を記入します。
 3. ラベルを適切に設定し、関連するメンバーをアサインします。
 
@@ -82,20 +81,20 @@ Issueの作成方法やバグ報告の手順は以下の通りです：
 プルリクエストを作成する際の手順と注意点は以下の通りです：
 
 1. 新しいブランチを作成します。
-    \`\`\`sh
+    ```sh
     git checkout -b feature/your-feature
-    \`\`\`
+    ```
 
 2. 変更をコミットします。
-    \`\`\`sh
+    ```sh
     git commit -m "Add your feature"
-    \`\`\`
+    ```
 
 3. プルリクエストを作成します。タイトルと説明を明確に記入し、変更内容を詳しく説明します。
 
 ### ロードマップと将来のプラン
 
-HyperFluxの今後の計画と目標については、[ロードマップ](https://github.com/HyperFlux/HyperFlux/wiki/Roadmap)を参照してください。貢献者がプロジェクトの方向性を理解し、長期的に関わることができるようにしています。
+HyperFluxの今後の計画と目標については、[ロードマップ](https://github.com/yukihamada/HyperFlux/wiki/Roadmap)を参照してください。貢献者がプロジェクトの方向性を理解し、長期的に関わることができるようにしています。
 
 ### 貢献者の認知とリワード
 
@@ -107,7 +106,6 @@ HyperFluxの今後の計画と目標については、[ロードマップ](https
 
 ### FAQ（よくある質問）
 
-貢献者から寄せられる一般的な質問とその回答をまとめた[FAQ](https://github.com/HyperFlux/HyperFlux/wiki/FAQ)を用意しています。貢献の際に生じる疑問や問題を解決するための資料として活用してください。
+貢献者から寄せられる一般的な質問とその回答をまとめた[FAQ](https://github.com/yukihamada/HyperFlux/wiki/FAQ)を用意しています。貢献の際に生じる疑問や問題を解決するための資料として活用してください。
 
 以上がHyperFluxへの貢献ガイドです。皆様の貢献をお待ちしています。共にブロックチェーンの未来を切り拓いていきましょう！
-

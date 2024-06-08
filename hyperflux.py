@@ -210,13 +210,13 @@ def main():
         print(f"Transactions: {[str(tx) for tx in block_to_add.transactions]}")
 
     while True:
-            node_status()
-            # address = "0x1234abcd"
-            amount = 50
-            send_transaction(address, amount)
-            network_status()
-            print("設定メニューは現在利用できません。")
-            print("無効な選択です。もう一度お試しください。")
+        node_status()
+        address = "0x1234abcd"
+        amount = 50
+        send_transaction(address, amount)
+        network_status()
+        print("設定メニューは現在利用できません。")
+        print("無効な選択です。もう一度お試しください。")
 
 if __name__ == "__main__":
     main()
