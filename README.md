@@ -129,7 +129,7 @@ Feel free to explore and contribute to make HyperFlux better! 🚀🔋
 
 HyperFlux is able to achieve these goals because of the following innovations: 1.
 
-1. **Proprietary BFT + DAG Algorithm**: Enables faster processing and finalization of transactions, resulting in higher throughput [ [oai_citation:1,GitHub - Setheum-Labs/Setheum: Setheum: zk-SNARKs Enabled DAG Powered Blockchain for Light-speed Smart Contracts. Ready for hacking ](https://github.com/Setheum-Labs/Setheum) [oai_citation:2,SNARKtor : A Decentralized Protocol for Scaling SNARKs Verification in Blockchains | Telos Blockchain | World's Fastest EVM](https://www.telos.net/post/ snarktor-a-decentralized-protocol-for-scaling-snarks-verification-in-blockchains)
+1. **Proprietary BFT + DAG Algorithm**: Enables faster processing and finalization of transactions, resulting in higher throughput [ [oai_citation:1,GitHub - Setheum-Labs/Setheum: Setheum: zk-SNARKs Enabled DAG Powered Blockchain for Light-speed Smart Contracts. Ready for hacking](https://github.com/Setheum-Labs/Setheum) [oai_citation:2,SNARKtor : A Decentralized Protocol for Scaling SNARKs Verification in Blockchains | Telos Blockchain | World's Fastest EVM](https://www.telos.net/post/ snarktor-a-decentralized-protocol-for-scaling-snarks-verification-in-blockchains)
 2. **zk-SNARKs technology**: provides a trusted blockchain environment with enhanced data privacy and security [ [oai_citation:3,Zero-knowledge rollups | ethereum.org](https:// ethereum.org/en/developers/docs/scaling/zk-rollups/)
 3. **Sharding technology**: effectively distributes network load and improves scalability [ [oai_citation:4,The Convergence of Zero-Knowledge Proofs and Decentralized Systems: Part 2 | AdaPulse](https://adapulse.io/the-convergence-of-zero-knowledge-proofs-and-decentralized-systems-part-2/) [oai_citation:5,ZkEVM explained: examining the future of zk rollups - LimeChain](https://limechain.tech/blog/zkevm-explained-the-future-of-zk-rollups/)
 4. **EVM compatibility**: compatibility with the existing Ethereum ecosystem makes it easier for developers to use existing tools and libraries [ [oai_citation:6,The Sudden Rise of EVM-Compatible ZK Rollups](https ://www.coindesk.com/tech/2022/07/20/the-sudden-rise-of-evm-compatible-zk-rollups/)
@@ -148,10 +148,3 @@ However, HyperFlux has adopted a new approach to overcome these challenges by in
 
 These factors enable HyperFlux to deliver performance and convenience that outperforms other blockchain projects and enables the next generation of blockchain technology.
 
-## CONTRIBUTE
-
-Interested parties are encouraged to contribute to the project. Please see CONTRIBUTING.md in the repository for more information.
-
-## Contribution Guide
-
-For more information, please refer to [CONTRIBUTING GUIDE](. /CONTRIBUTING.md) for more information.
