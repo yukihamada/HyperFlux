@@ -148,3 +148,4 @@ However, HyperFlux has adopted a new approach to overcome these challenges by in
 
 These factors enable HyperFlux to deliver performance and convenience that outperforms other blockchain projects and enables the next generation of blockchain technology.
 
+or more information, please refer to the [CONTRIBUTING GUIDE](./CONTRIBUTING.md).
