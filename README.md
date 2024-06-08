@@ -14,7 +14,6 @@ HyperFlux aims to achieve the following goals:
 - **`README.md`**: Project overview, purpose, setup instructions, usage guidelines, and runtime screen details.
 - **`hyperflux.py`**: Script for transaction processing, blockchain management, parallel transaction processing using DAG, and simulating a BFT network.
 - **`test_hyperflux.py`**: Script for testing the functionalities of `hyperflux.py` using `unittest` framework. It tests transaction validity, genesis block creation, and blockchain integrity.
-- **`FAQ.md`**: Frequently Asked Questions about the HyperFlux project, covering general, technical, community, development, governance, and incentive-related questions.
 - **`__pycache__`**: Directory for caching Python bytecode.
 - **`requirements.txt`**: List of project dependencies, including Flask.
 - **`wiki/`**: Directory containing additional documentation about the project.
