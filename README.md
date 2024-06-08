@@ -13,34 +13,35 @@ HyperFlux will achieve the following goals: **HyperFlux will achieve the followi
 
 ### File List and Descriptions
 
-- **`CONTRIBUTING.md`**: Project contribution guide. Includes project goals, vision, contribution methods, installation instructions, coding style, communication channels, issue management, pull request process, roadmap, contributor recognition, and FAQs.
-- **`README.md`**: Project overview, objectives, installation instructions, usage methods, and runtime screen information.
-- **`hyperflux.py`**: Script for transaction processing, blockchain management, parallel transaction processing using DAG (Directed Acyclic Graph), and BFT (Byzantine Fault Tolerance) network simulation.
-- **`test_hyperflux.py`**: Script to test the functionality of `hyperflux.py` using the `unittest` framework. Tests transaction validity, genesis block creation, and blockchain validity.
-- **`FAQ.md`**: Frequently Asked Questions (FAQ) about the HyperFlux project. Includes general questions, technical questions, community-related questions, development-related questions, governance and incentives-related questions, and other questions.
-- **`__pycache__`**: Directory storing Python bytecode cache.
-- **`requirements.txt`**: File listing project dependencies. Flask is listed as a dependency.
-- **`wiki`**: Directory containing additional documentation related to the project.
-
+- **\`CONTRIBUTING.md\`**: Project contribution guide. Includes project goals, vision, contribution methods, installation instructions, coding style, communication channels, issue management, pull request process, roadmap, contributor recognition, and FAQs.
+- **\`README.md\`**: Project overview, objectives, installation instructions, usage methods, and runtime screen information.
+- **\`hyperflux.py\`**: Script for transaction processing, blockchain management, parallel transaction processing using DAG (Directed Acyclic Graph), and BFT (Byzantine Fault Tolerance) network simulation.
+- **\`test_hyperflux.py\`**: Script to test the functionality of \`hyperflux.py\` using the \`unittest\` framework. Tests transaction validity, genesis block creation, and blockchain validity.
+- **\`FAQ.md\`**: Frequently Asked Questions (FAQ) about the HyperFlux project. Includes general questions, technical questions, community-related questions, development-related questions, governance and incentives-related questions, and other questions.
+- **\`__pycache__\`**: Directory storing Python bytecode cache.
+- **\`requirements.txt\`**: File listing project dependencies. Flask is listed as a dependency.
+- **\`wiki\`**: Directory containing additional documentation related to the project.
 
 ### Setup Instructions
 
-Follow these steps to set up your HyperFlux project: 1.
+Follow these steps to set up your HyperFlux project:
 
-Clone the repository: 1.
-    \`\\\bash
+1. Clone the repository:
+    \`\ash
     git clone https://github.com/yukihamada/HyperFlux.git
     cd HyperFlux
-    \`\\\\bash`bash
+    \`\\bash\`bash
 
-Install the required dependencies: \`\\\\bash
+2. Install the required dependencies:
+    \`\\bash
     Install the required dependencies: \`\\`\`bash
     pip install -r requirements.txt
-    \requirements.txt
+    equirements.txt
 
 ### How to use
 
-To start the HyperFlux project, run the following command: \`\\\`\bash
+To start the HyperFlux project, run the following command:
+\`\\`ash
 
 \`\\`bash
 python hyperflux.py
@@ -48,10 +49,10 @@ python hyperflux.py
 
 ### Screen at runtime
 
-When you run `python hyperflux.py`, you will see a screen similar to the following: \`\\\\fnDroidHome``plain``bash python hyperflux.py
+When you run \`python hyperflux.py\`, you will see a screen similar to the following:
+\`\\fnDroidHome\`\`plain\`\`bash python hyperflux.py
 
-```
-\`Python hyperflux.py\\\filter.py\filter.py\filter.py
+\`Python hyperflux.py\ilter.pyilter.pyilter.py
 ==================================================
 HyperFlux Status: Initializing...
 [###----] Loading configuration...
@@ -63,12 +64,11 @@ HyperFlux WEB interface: http://localhost:8080
 Dashboard: 1.
 1. 🚀 Check node status
 2. 💸 Submit transaction
-\blur1}}
-```
+lur1}}
 
 ### Project Purpose
 
-HyperFlux aims to achieve the following goals
+HyperFlux aims to achieve the following goals:
 
 - **Ultra-fast transaction processing**: Processes up to 10,000 transactions per second using a proprietary BFT + DAG algorithm.
 - **High security**: Uses zk-SNARKs technology to protect transaction privacy while verifying.
@@ -77,26 +77,69 @@ HyperFlux aims to achieve the following goals
 
 ### File List
 
-- \{{CONTRIBUTING.md}}
-- \`README.md\`
-- \`CONTRIBUTING.md\` \`README.md\`
-- \`TEST_HYPERFLUX.py\`
-- \`FAQ.md\` \`pycache.md\`}{{pycache.md
-- \`__pycache__\` \`pycache.md\`
-- \`requirements.txt
-- \`wiki.md\` \`pycache.md\` \`requirements.txt\`
+- **\`CONTRIBUTING.md\`**
+- **\`README.md\`**
+- **\`hyperflux.py\`**
+- **\`test_hyperflux.py\`**
+- **\`FAQ.md\`**
+- **\`__pycache__\`**
+- **\`requirements.txt\`**
+- **\`wiki\`**
 
 ### Setup Instructions
 
-Follow these steps to set up the HyperFlux project. 1.
+Follow these steps to set up the HyperFlux project:
 
-```
-    \`wiki`\\bash
+1. Clone the repository:
+    \`\ash
     git clone https://github.com/yukihamada/HyperFlux.git
     cd HyperFlux
-    Install the necessary dependencies: \`\\`\bash
+    \`\\bash\`bash
 
-Install the necessary dependencies: \`\\`\\bash
+2. Install the necessary dependencies:
+    \`\\bash
+    Install the necessary dependencies: \`\\`\`bash
+    pip install -r requirements.txt
+    equirements.txt
+
+### Running the project
+
+When you run \`python hyperflux.py\`, you will see the following screen:
+\`\\fnDroidHome\`\`plain\`\`bash python hyperflux.py
+
+\`Python hyperflux.py\ilter.pyilter.pyilter.py
+==================================================
+HyperFlux Status: Initializing...
+[###----] Loading configuration...
+[#####---] Connecting to network...
+[########] Node started successfully...
+[==================================================
+HyperFlux WEB interface: http://localhost:8080
+==================================================
+Dashboard: 1.
+1. 🚀 Check node status
+2. 💸 Submit transaction
+lur1}}
+
+### ⚙️ Why This is Feasible  
+HyperFlux achieves its goals through the following innovations:
+1. **Proprietary BFT + DAG Algorithm**: Rapid processing and finalization of transactions with high throughput.
+2. **zk-SNARKs Technology**: Enhanced data privacy and security.
+3. **Sharding Technology**: Effective distribution of network load and improved scalability.
+4. **EVM Compatibility**: Easier to use existing tools and libraries within the Ethereum ecosystem.
+5. **Autonomous Development Software**: Tools like OpenDevin streamline the development process.
+
+### 🎯 Contribute  
+Interested parties are encouraged to contribute to the project. Please see the \`CONTRIBUTING.md\` file in the repository for more information.
+
+### 📜 License  
+This project is licensed under the terms specified in the repository's \`LICENSE\` file.
+
+### 📘 Contribution Guide  
+For more information, please refer to the [CONTRIBUTING GUIDE](./CONTRIBUTING.md).
+
+Feel free to explore and contribute to make HyperFlux better! 🚀🔋
+
     Install the necessary dependencies: \`\\`\`bash
     pip install -r requirements.txt
     \requirements.txt
@@ -405,71 +448,78 @@ Here is an example for manipulating each HyperFlux function using command line a
 
 #### Checking the status of a node
 
+=======
+## HyperFlux  
+🌐 [日本語README](#) | [🇬🇧 English README](#) | [🇫🇷 Français README](#) | [🇨🇳 中文 README](#)  
+
+### 🌟 Project Objectives  
+HyperFlux aims to achieve the following goals:  
+- ⚡ **Ultra-fast Transaction Processing**: Proprietary BFT + DAG algorithms process up to 10,000 transactions per second.
+- 🛡️ **High Security**: Verification while protecting transaction privacy using zk-SNARKs technology.
+- 🤖 **BFT (Byzantine Fault Tolerance)**: BFT algorithm implemented to improve fault tolerance in distributed systems.
+- 📈 **DAG (Directed Acyclic Graph)**: DAG was implemented to enable parallel processing of transactions and increase throughput.
+
+### 📁 File List and Description  
+- **`CONTRIBUTING.md`**: Project contribution guide including the project vision, contribution methods, setup instructions, coding style, communication channels, issue management, pull request process, roadmap, acknowledgments, rewards, and FAQs.
+- **`README.md`**: Project overview, purpose, setup instructions, usage guidelines, and runtime screen details.
+- **`hyperflux.py`**: Script for transaction processing, blockchain management, parallel transaction processing using DAG, and simulating a BFT network.
+- **`test_hyperflux.py`**: Script for testing the functionalities of `hyperflux.py` using `unittest` framework. It tests transaction validity, genesis block creation, and blockchain integrity.
+- **`FAQ.md`**: Frequently Asked Questions about the HyperFlux project, covering general, technical, community, development, governance, and incentive-related questions.
+- **`__pycache__`**: Directory for caching Python bytecode.
+- **`requirements.txt`**: List of project dependencies, including Flask.
+- **`wiki/`**: Directory containing additional documentation about the project.
+
+### 🛠️ Setup Instructions  
+Follow these steps to set up HyperFlux:  
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yukihamada/HyperFlux.git  
+   cd HyperFlux  
+   ```
+2. **Install the required dependencies**:
+   ```bash
+   pip install -r requirements.txt  
+   ```
+
+### 🚀 How to Use  
+To start the HyperFlux project, run the following command:  
+>>>>>>> Stashed changes
 ```bash
-python hyperflux.py status
+python hyperflux.py  
+```  
+
+### 🖥️ Screen at Runtime  
+When you run `python hyperflux.py`, you will see a screen similar to the following:  
+```
+==================================================
+HyperFlux Status: Initializing...                
+[###----] Loading configuration...                
+[#####---] Connecting to network...               
+[########] Node started successfully...            
+==================================================
+HyperFlux WEB interface: http://localhost:8080    
+==================================================
+Dashboard:                                       
+1. 🚀 Check node status                           
+2. 💸 Submit transaction                          
+3. 🌐 Check network status                        
+4. 📜 Smart contract management                   
+5. 🗳️ Governance                                 
+6. 🌉 Cross-chain functionality                  
+7. ⚙️ Configuration                               
+==================================================
+Select functionality (1-7):
 ```
 
-Output: ```plaintext
+### 🔧 Key Features  
+- **Smart Contract Support**: EVM compatibility for development in Solidity. Seamless integration with the existing Ethereum ecosystem.
+- **P2P Communication**: Real-time peer-to-peer communication using WebRTC. Fast and secure data transfer between nodes, optimizing distributed applications' performance.
+- **Scalability**: Advanced scalability features with sharding and DAG, ensuring consistent high performance even as the network grows.
 
-```plaintext
-==================================================
-Node status: ``Node status
-- State: Active
-- Number of connected peers: 12
-- Block Height: 654321
-- Number of transactions: 987654
-- Memory Used: 256MB
-- Uptime: 48 hours
-==================================================
-````
-
-#### Transmission of transactions
-
-````bash
-python hyperflux.py send --address 0x1234abcd --amount 50
-```
-
-Output: ````plaintext
-
-````plaintext
-==================================================
-Transaction sent to: ````plaintext
-Destination address: 0x1234abcd
-Amount of tokens to send: 50
-Transaction being sent...
-Transaction ID: 0xabcd1234efgh5678
-Transaction successfully submitted.
-==================================================
-````
-
-#### Checking network status
-
-```bash
-python hyperflux.py network
-Output: ```
-
-Output: ```plaintext
-
-```plaintext
-==================================================
-Network status: ```Number of active nodes: 200
-- Number of active nodes: 200
-- Network Latency: Average 50ms
-- Transaction processing speed: 8500 transactions per second
-- Total transactions: 10,000,000
-==================================================
-````
-
-### Key Features
-
-- **Smart Contract Support**: Ethereum Virtual Machine (EVM) compatibility allows development in Solidity. This allows for seamless integration with the existing Ethereum ecosystem.
-- **P2P Communication**: Real-time peer-to-peer communication using WebRTC. Data transfer between nodes is fast and secure, optimizing the performance of distributed applications.
-- **Scalability**: Advanced scalability features with sharding and DAG ensure consistent high performance even as the network grows.
-
-### Usage scenarios
-
-- **Financial Transactions**: Fast and secure transaction processing enables instant settlement and asset management.
+### 📜 Usage Scenarios  
+- **Financial Transactions**: Fast and secure transaction processing for instant settlement and asset management.
 - **Supply Chain Management**: Transparent and reliable transactions with real-time tracking.
+<<<<<<< Updated upstream
 - **Decentralized Applications**: Enhance user experience with fast P2P communication and smart contracts.
 
 ### Why is this feasible?
@@ -496,5 +546,25 @@ However, HyperFlux has adopted a new approach to overcome these challenges by in
 These factors enable HyperFlux to deliver performance and convenience that outperforms other blockchain projects and enables the next generation of blockchain technology.
 
 ## Contribution Guide
+=======
+- **Decentralized Applications**: Enhanced user experience with fast P2P communication and smart contracts.
 
-For more information, please refer to [CONTRIBUTING GUIDE](. /CONTRIBUTING.md) for more information.
+### ⚙️ Why This is Feasible  
+HyperFlux achieves its goals through the following innovations:
+1. **Proprietary BFT + DAG Algorithm**: Rapid processing and finalization of transactions with high throughput.
+2. **zk-SNARKs Technology**: Enhanced data privacy and security.
+3. **Sharding Technology**: Effective distribution of network load and improved scalability.
+4. **EVM Compatibility**: Easier to use existing tools and libraries within the Ethereum ecosystem.
+5. **Autonomous Development Software**: Tools like OpenDevin streamline the development process.
+
+### 🎯 Contribute  
+Interested parties are encouraged to contribute to the project. Please see the `CONTRIBUTING.md` file in the repository for more information.
+
+### 📜 License  
+This project is licensed under the terms specified in the repository's `LICENSE` file.
+
+### 📘 Contribution Guide  
+For more information, please refer to the [CONTRIBUTING GUIDE](./CONTRIBUTING.md).
+>>>>>>> Stashed changes
+
+Feel free to explore and contribute to make HyperFlux better! 🚀🔋
