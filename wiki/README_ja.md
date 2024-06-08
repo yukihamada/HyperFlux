@@ -76,8 +76,7 @@ HyperFlux WEB インターフェース: http://localhost:8080
 python hyperflux.py status
 ```
 
-出力される：
-プレーンテキスト
+```plaintext
 ==================================================
 ノードの状態：
 - 状態： アクティブ
@@ -94,8 +93,7 @@ python hyperflux.py status
 python hyperflux.py send --address 0x1234abcd --amount 50
 ```
 
-出力する：
-プレーンテキスト
+```plaintext
 ==================================================
 トランザクションが送信されました：
 - 宛先アドレス 0x1234abcd
