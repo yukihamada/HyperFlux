@@ -11,16 +11,17 @@ HyperFlux will achieve the following goals: **HyperFlux will achieve the followi
 - **BFT (Byzantine Fault Tolerance)**: BFT algorithm implemented to improve fault tolerance in distributed systems.
 - **DAG (Directed Acyclic Graph)**: DAG was implemented to enable parallel processing of transactions and increase throughput.
 
-### File List
+### File List and Descriptions
 
-- \`CONTRIBUTING.md\`
-- \`README.md\`
-- \`hyperflux.py\`
-- \`test_hyperflux.py\`
-- \`FAQ.md\` \`pycache.md\`}{{pycache.md
-- \`__pycache__\` \`pycache.md\`
-- \`requirements.txt
-- \`wiki.md\` \`pycache.md\` \`requirements.txt\`
+- **`CONTRIBUTING.md`**: Project contribution guide. Includes project goals, vision, contribution methods, installation instructions, coding style, communication channels, issue management, pull request process, roadmap, contributor recognition, and FAQs.
+- **`README.md`**: Project overview, objectives, installation instructions, usage methods, and runtime screen information.
+- **`hyperflux.py`**: Script for transaction processing, blockchain management, parallel transaction processing using DAG (Directed Acyclic Graph), and BFT (Byzantine Fault Tolerance) network simulation.
+- **`test_hyperflux.py`**: Script to test the functionality of `hyperflux.py` using the `unittest` framework. Tests transaction validity, genesis block creation, and blockchain validity.
+- **`FAQ.md`**: Frequently Asked Questions (FAQ) about the HyperFlux project. Includes general questions, technical questions, community-related questions, development-related questions, governance and incentives-related questions, and other questions.
+- **`__pycache__`**: Directory storing Python bytecode cache.
+- **`requirements.txt`**: File listing project dependencies. Flask is listed as a dependency.
+- **`wiki`**: Directory containing additional documentation related to the project.
+
 
 ### Setup Instructions
 
@@ -49,6 +50,7 @@ python hyperflux.py
 
 When you run `python hyperflux.py`, you will see a screen similar to the following: \`\\\\fnDroidHome``plain``bash python hyperflux.py
 
+```
 \`Python hyperflux.py\\\filter.py\filter.py\filter.py
 ==================================================
 HyperFlux Status: Initializing...
@@ -62,8 +64,7 @@ Dashboard: 1.
 1. 🚀 Check node status
 2. 💸 Submit transaction
 \blur1}}
-
-## English
+```
 
 ### Project Purpose
 
@@ -89,7 +90,7 @@ HyperFlux aims to achieve the following goals
 
 Follow these steps to set up the HyperFlux project. 1.
 
-
+```
     \`wiki`\\bash
     git clone https://github.com/yukihamada/HyperFlux.git
     cd HyperFlux
@@ -99,77 +100,6 @@ Install the necessary dependencies: \`\\`\\bash
     Install the necessary dependencies: \`\\`\`bash
     pip install -r requirements.txt
     \requirements.txt
-
-### Usage
-
-To start the HyperFlux project, run the following command: \`\\\`\bash
-
-\`\`\`bash
-python hyperflux.py
-\`\`\`Computer``bash python hyperflux.py
-
-### Runtime Screen
-
-When you run \`python hyperflux.py`, you will see the following screen: \`\\`\`\plain
-
-\`\\`plaintext
-==================================================
-HyperFlux Status: Initializing...
-[###----] Loading settings...
-[#####---] Connecting to the network...
-[########] Node started successfully.
-[==================================================
-HyperFlux WEB Interface: http://localhost:8080
-==================================================
-Dashboard: 1.
-1. 🚀 Check node status
-2. 💸 Send transactions
-\\\fnDroid Sans Fallback``\fnDroid Sans Fallback`\fnDroid
-
-## Japanese
-
-
-## Project Objectives
-
-HyperFlux will achieve the following goals
-
-- **Ultra-fast transaction processing**: proprietary BFT + DAG algorithms process up to 10,000 transactions per second.
-- **High Security**: Verification while protecting transaction privacy using zk-SNARKs technology.
-- **BFT (Byzantine Fault Tolerance)**: BFT algorithm implemented to improve fault tolerance in distributed systems.
-- **DAG (Directed Acyclic Graph)**: DAG was implemented to enable parallel processing of transactions and increase throughput.
-## FILE LIST
-
-- \`CONTRIBUTING.md\`
-- \`README.md\`
-- \`hyperflux.py\`
-- \`test_hyperflux.py\`
-- \`FAQ.md\` \`pycache.md\`}{{pycache.md
-- \`__pycache__\` \`pycache.md\`
-- \`requirements.txt
-- \`wiki.md\` \`pycache.md\` \`requirements.txt\`
-
-
-## Setup Instructions
-
-Follow these steps to set up your HyperFlux project: 1.
-
-Clone the repository: ```bash
-    ```bash
-    git clone https://github.com/yukihamada/HyperFlux.git
-    cd HyperFlux
-    2.
-
-Install the required dependencies: ```bash
-    ```bash
-    pip install -r requirements.txt
-    requirements.txt
-
-## How to use
-
-To start the HyperFlux project, run the following command: ```bash
-
-```bash
-python hyperflux.py
 ```
 
 
@@ -564,13 +494,6 @@ However, HyperFlux has adopted a new approach to overcome these challenges by in
 4. **Continuous Improvement and Testing**: Through continuous testing and feedback loops, we are improving the reliability and performance of our technology [ [oai_citation:13,The Convergence of Zero-Knowledge Proofs and Decentralized Systems: Part 2 | AdaPulse](https://adapulse.io/the-convergence-of-zero-knowledge-proofs-and-decentralized-systems-part-2 /) [oai_citation:14,ZkEVM explained: examining the future of zk rollups - LimeChain](https://limechain.tech/blog/zkevm-explained-the-future-of- zk-rollups/)
 
 These factors enable HyperFlux to deliver performance and convenience that outperforms other blockchain projects and enables the next generation of blockchain technology.
-
-## CONTRIBUTE
-
-Interested parties are encouraged to contribute to the project. Please see CONTRIBUTING.md in the repository for more information.
-
-## LICENSE
-
 
 ## Contribution Guide
 
