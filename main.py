@@ -9,7 +9,7 @@ class Transaction:
         self.timestamp = time.time()
 
     def __repr__(self):
-
+        return f'Transaction({self.sender}, {self.receiver}, {self.amount}, {self.timestamp})'
 
     def is_valid(self):
         # トランザクションの検証ロジックを追加
@@ -73,6 +73,8 @@ class BFTNetwork:
                 return False
         return True
 
+
+
 class DAG:
     def __init__(self):
         self.nodes = []
@@ -113,6 +115,12 @@ class BFTNode:
 
     def receive_block(self, block):
         self.blockchain.append(block)
+        if not is_chain_valid(self.blockchain):
+            self.blockchain.pop()
+            print(f'Invalid block received by node {self.node_id}')
+
+    def is_valid(self):
+        return is_chain_valid(self.blockchain)
 
 def create_genesis_block():
     genesis_transactions = [Transaction('system', 'user', 50)]
