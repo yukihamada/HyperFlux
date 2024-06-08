@@ -1,9 +1,9 @@
-# HyperFlux
 
-🌐  [日本語README](./wiki/README_ja.md) | 🇬🇧 [English README](./wiki/README_en.md) | 🇫🇷 [Français README](./wiki/README_fr.md) | 🇨🇳 [中文 README](./wiki/README_zh.md)
+## ハイパーフラックス
+🌐 [日本語README](./wiki/README_ja.md) | 🇬🇧 [英語README](./wiki/README_ja.md) | 🇫🇷 [フランス語README](./wiki/README_fr.md) | 🇨🇳 [中文README](./wiki/README_zh.md)
 
 ### プロジェクト目標  
-HyperFluxは以下の目標を達成することを目指している：
+HyperFluxは以下の目標を達成することを目指しています：
 - 超高速トランザクション処理**： 独自のBFT + DAGアルゴリズムにより、毎秒最大10,000トランザクションを処理。
 - 🛡️ **高セキュリティ**： zk-SNARKs テクノロジーを使用してトランザクションのプライバシーを保護しながら検証。
 - 🤖 **BFT (Byzantine Fault Tolerance)**： BFT (Byzantine Faultolerance)**：分散システムの耐障害性を向上させるために実装されたアルゴリズム。
@@ -14,7 +14,6 @@ HyperFluxは以下の目標を達成することを目指している：
 - **`README.md`**： プロジェクトの概要、目的、セットアップ手順、使用ガイドライン、ランタイム画面の詳細。
 - **`hyperflux.py`**： トランザクション処理、ブロックチェーン管理、DAGを使った並列トランザクション処理、BFTネットワークのシミュレーションのためのスクリプト。
 - ***test_hyperflux.py`**： unittest` フレームワークを使用して `hyperflux.py` の機能をテストするスクリプト。トランザクションの有効性、ジェネシスブロックの生成、ブロックチェーンの整合性をテストする。
-- **`FAQ.md`**： HyperFluxプロジェクトに関するよくある質問。一般的な質問、技術的な質問、コミュニティに関する質問、開発に関する質問、ガバナンスに関する質問、インセンティブに関する質問が含まれる。
 - **`__pycache__`**： Python バイトコードをキャッシュするためのディレクトリ。
 - **`requirements.txt`**： Flask を含むプロジェクトの依存関係のリスト。
 - **`wiki/`**： プロジェクトに関する追加ドキュメントを含むディレクトリ。
