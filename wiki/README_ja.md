@@ -1,6 +1,6 @@
 # HyperFlux
 
-🌐 [日本語のREADMEはこちら](./wiki/README_ja.md) | 🇬🇧 [English README](./wiki/README_en.md) | 🇫🇷 [Français README](./wiki/README_fr.md) | 🇨🇳 [中文 README](./wiki/README_zh.md)
+🌐  [日本語README](./wiki/README_ja.md) | 🇬🇧 [English README](./wiki/README_en.md) | 🇫🇷 [Français README](./wiki/README_fr.md) | 🇨🇳 [中文 README](./wiki/README_zh.md)
 
 
 ### プロジェクトの目的
