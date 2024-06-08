@@ -38,76 +38,6 @@ python hyperflux.py
 ```  
 
 ### 📖 Screen at Runtime Details  
-For a detailed explanation of what you will see when you run the project, please refer to the [Screen at Runtime Guide](./wiki/Screen_at_Runtime.md).
-
-### 🔧 Key Features  
-- **Smart Contract Support**: EVM compatibility for development in Solidity. Seamless integration with the existing Ethereum ecosystem.
-- **P2P Communication**: Real-time peer-to-peer communication using WebRTC. Fast and secure data transfer between nodes, optimizing distributed applications' performance.
-- **Scalability**: Advanced scalability features with sharding and DAG, ensuring consistent high performance even as the network grows.
-
-### 💻 Usage Scenarios
-Here are some command-line arguments to operate HyperFlux functionality directly from the terminal:
-
-#### Checking the Node Status
-```bash
-python hyperflux.py --check-node-status
-```
-
-#### Submitting a Transaction
-```bash
-python hyperflux.py --submit-transaction --to [recipient_address] --amount [amount]
-```
-
-#### Checking Network Status
-```bash
-python hyperflux.py --check-network-status
-```
-
-#### Managing Smart Contracts
-```bash
-python hyperflux.py --manage-smart-contracts
-```
-
-#### Governance Functions
-```bash
-python hyperflux.py --governance --action [create/vote/results/parameters]
-```
-
-#### Cross-chain Functionality
-```bash
-python hyperflux.py --cross-chain --action [list/transfer/receive/history]
-```
-
-#### Configuration Settings
-```bash
-python hyperflux.py --config --category [general/network/security/notification/account/advanced]
-```
-
-### ⚙️ Why This is Feasible  
-HyperFlux achieves its goals through the following innovations:
-1. **Proprietary BFT + DAG Algorithm**: Rapid processing and finalization of transactions with high throughput.
-2. **zk-SNARKs Technology**: Enhanced data privacy and security.
-3. **Sharding Technology**: Effective distribution of network load and improved scalability.
-4. **EVM Compatibility**: Easier to use existing tools and libraries within the Ethereum ecosystem.
-5. **Autonomous Development Software**: Tools like OpenDevin streamline the development process.
-
-### 🎯 Contribute  
-Interested parties are encouraged to contribute to the project. Please see the `CONTRIBUTING.md` file in the repository for more information.
-
-### 📜 License  
-This project is licensed under the terms specified in the repository's `LICENSE` file.
-
-### 📘 Contribution Guide  
-For more information, please refer to the [CONTRIBUTING GUIDE](./CONTRIBUTING.md).
-
-Feel free to explore and contribute to make HyperFlux better! 🚀🔋
-```
-
-### `wiki/Screen_at_Runtime.md`
-
-```markdown
-# Screen at Runtime Guide
-
 When you run `python hyperflux.py`, you will encounter a dashboard that allows you to monitor and interact with the HyperFlux system. Below are the detailed views and functionalities that you can access.
 
 ## Initial Screen
@@ -132,114 +62,69 @@ Dashboard:
 ==================================================
 Select functionality (1-7):
 ```
+For a detailed explanation of what you will see when you run the project, please refer to the [Screen at Runtime Guide](./wiki/Screen_at_Runtime.md).
 
-### 1. 🚀 Check Node Status
-Displays the current status of the node including network connections and performance metrics.
+### 🔧 Key Features  
+- **Smart Contract Support**: EVM compatibility for development in Solidity. Seamless integration with the existing Ethereum ecosystem.
+- **P2P Communication**: Real-time peer-to-peer communication using WebRTC. Fast and secure data transfer between nodes, optimizing distributed applications' performance.
+- **Scalability**: Advanced scalability features with sharding and DAG, ensuring consistent high performance even as the network grows.
+
+### 💻 Usage Scenarios
+Here is an example for manipulating each HyperFlux function using command line arguments.
+
+#### Checking the status of a node
+```bash
+python hyperflux.py status
+```
+
+Output:
 ```plaintext
 ==================================================
-Node Status:
-- Status: Running
-- Version: v1.2.3
-- Network: MainNet
-- API Endpoint: http://localhost:8081
+Node status:
+- State: Active
 - Number of connected peers: 12
-- Block Volume: 654,321
-- Transactions: 987,654
-- Memory used: 256MB
-- CPU utilization: 25%
-- Disk usage: 10GB/500GB
+- Block Height: 654321
+- Number of transactions: 987654
+- Memory Used: 256MB
 - Uptime: 48 hours
 ==================================================
 ```
 
-### 2. 💸 Submit Transaction
-Enables the submission of transactions. Prompts the user for recipient address and transaction amount.
+#### Transmission of transactions
+```bash
+python hyperflux.py send --address 0x1234abcd --amount 50
+```
+
+Output:
 ```plaintext
 ==================================================
-Submit Transaction:
-Recipient address: [input]
-Transfer amount: [input]
-==================================================
-Transaction sent: recipient address: 0x9876543210fedcba Transaction ID: 0x1234567890abcdef
-Waiting for transaction confirmation...
-Token successfully transferred.
+Transaction sent to:
+- Destination address: 0x1234abcd
+- Amount of tokens to send: 50
+Transaction being sent...
+Transaction ID: 0xabcd1234efgh5678
+Transaction successfully submitted.
 ==================================================
 ```
 
-### 3. 🌐 Check Network Status
-Provides an overview of the network status including connected nodes, transaction volume, and network health.
-```plaintext
-==================================================
-Network Status:
-- Network Name: HyperFlux MainNet
-- Chain ID: 1
-- Number of active nodes: 200
-- Number of shards: 8
-- Number of nodes per shard: 25
-- Synchronization delay between shards: 100ms average
-- Number of DAG nodes: 1,000,000
-- Depth of DAG: 500
-- Width of DAG: 2,000
-- Invalid transaction rate in DAG: 0.01%
-- Network latency: 50ms average
-- Transaction processing speed: 8,500 transactions per second
-- Total transactions: 10,000,000
-- Average block time: 5 seconds
-- Latest block hash: 0xabcdef1234567890
-- Latest block timestamp: 2024-06-08 12:34:56 UTC
-==================================================
-```
+### ⚙️ Why This is Feasible  
+HyperFlux achieves its goals through the following innovations:
+1. **Proprietary BFT + DAG Algorithm**: Rapid processing and finalization of transactions with high throughput.
+2. **zk-SNARKs Technology**: Enhanced data privacy and security.
+3. **Sharding Technology**: Effective distribution of network load and improved scalability.
+4. **EVM Compatibility**: Easier to use existing tools and libraries within the Ethereum ecosystem.
+5. **Autonomous Development Software**: Tools like OpenDevin streamline the development process.
 
-### 4. 📜 Smart Contract Management
-Allows deployment and management of smart contracts. Users can view, deploy, and manage contracts.
-```plaintext
-==================================================
-Smart Contract Management:
-1. Deploy a new smart contract
-2. Manage existing smart contracts
-3. View smart contract execution history
-4. Smart contract security auditing
-==================================================
-```
+### 🎯 Contribute  
+Interested parties are encouraged to contribute to the project. Please see the `CONTRIBUTING.md` file in the repository for more information.
 
-### 5. 🗳️ Governance
-Provides options for decentralized governance activities including creating proposals, voting, and viewing results.
-```plaintext
-==================================================
-Governance:
-1. Create a proposal
-2. Vote on an existing proposal
-3. View voting results
-4. Set governance parameters
-==================================================
-```
+### 📜 License  
+This project is licensed under the terms specified in the repository's `LICENSE` file.
 
-### 6. 🌉 Cross-chain Functionality
-Features related to cross-chain interactions such as asset transfers and viewing transaction history.
-```plaintext
-==================================================
-Cross-chain functionality:
-1. List of supported blockchains
-2. Transfer assets to other blockchains
-3. Receive assets from other blockchains
-4. Display cross-chain transaction history
-==================================================
-```
+### 📘 Contribution Guide  
+For more information, please refer to the [CONTRIBUTING GUIDE](./CONTRIBUTING.md).
 
-### 7. ⚙️ Configuration
-Provides various configuration settings including general, network, security, notifications, and advanced settings.
-```plaintext
-==================================================
-Configuration:
-1. General settings
-2. Network settings
-3. Security settings
-4. Notification settings
-5. Account settings
-6. Advanced settings
-==================================================
-```
-
+Feel free to explore and contribute to make HyperFlux better! 🚀🔋
 
 ### Why is this feasible?
 
