@@ -1,6 +1,23 @@
 import hashlib
 import time
-import sys
+import argparse
+from py_ecc import bn128
+
+
+class DAG:
+    def __init__(self):
+        self.graph = nx.DiGraph()
+
+    def add_transaction(self, transaction):
+        self.graph.add_node(transaction)
+
+    def add_dependency(self, transaction1, transaction2):
+        self.graph.add_edge(transaction1, transaction2)
+
+    def get_transactions(self):
+        return list(nx.topological_sort(self.graph))
+
+
 
 class Transaction:
     def __init__(self, sender, receiver, amount):
@@ -19,9 +36,50 @@ class Transaction:
             return False
         if not isinstance(self.amount, (int, float)):
             return False
-        if not isinstance(self.sender, str) or not isinstance(self.receiver, str):
+def is_chain_valid(blockchain):
+    for i in range(1, len(blockchain)):
+        current_block = blockchain[i]
+        previous_block = blockchain[i - 1]
+        if current_block.hash != calculate_hash(current_block.index, current_block.previous_hash, current_block.timestamp, current_block.transactions):
             return False
-        return True
+        if current_block.previous_hash != previous_block.hash:
+            return False
+        for transaction in current_block.transactions:
+            if not transaction.is_valid():
+                return False
+    return True
+
+
+
+def zk_snark_proof(self):
+    # Example zk-SNARK proof generation (simplified)
+    g1 = G1
+    g2 = G2
+
+    self.dag = DAG()
+
+    proof = pairing(g1, g2) == pairing(h, g2)
+    return proof
+
+    if self.amount <= 0:
+        return False
+    if not self.sender or not self.receiver:
+        return False
+    if not isinstance(self.amount, (int, float)):
+        return False
+    return True
+
+
+def zk_snark_proof(self):
+    # Example zk-SNARK proof generation (simplified)
+    g1 = G1
+    g2 = G2
+
+    self.dag = DAG()
+
+    proof = pairing(g1, g2) == pairing(h, g2)
+    return proof
+
 
 class Block:
     def __init__(self, index, previous_hash, timestamp, transactions, hash):
@@ -36,12 +94,29 @@ class Block:
 
 def calculate_hash(index, previous_hash, timestamp, transactions):
     value = f"{index}{previous_hash}{timestamp}{transactions}"
-    return hashlib.sha256(value.encode('utf-8')).hexdigest()
+def get_transactions(self):
+    return [node.transaction for node in self.nodes if node.is_valid()]
+
+def create_genesis_block():
+    return Block(0, '0', int(time.time()), [], calculate_hash(0, '0', int(time.time()), []))
+
 
 class BFTNode:
     def __init__(self, node_id):
         self.node_id = node_id
         self.blockchain = []
+
+    def add_transaction(self, transaction):
+        if transaction.is_valid() and transaction.zk_snark_proof():
+            self.dag.add_transaction(transaction)
+            print(f'Transaction added by node {self.node_id}')
+
+
+        transactions = self.dag.get_transactions()
+        for transaction in transactions:
+            print(f'Processing transaction: {transaction}')
+
+            print(f'Invalid transaction received by node {self.node_id}')
 
     def receive_block(self, block):
         self.blockchain.append(block)
@@ -50,8 +125,10 @@ class BFTNode:
             print(f'Invalid block received by node {self.node_id}')
             print(f'Block received and added by node {self.node_id}')
 
-    def is_valid(self):
-        return all(is_chain_valid(self.blockchain) for block in self.blockchain)
+def get_transactions(self):
+    return [node.transaction for node in self.nodes if node.is_valid()]
+
+
 
 class BFTNetwork:
     def __init__(self, num_nodes):
@@ -94,12 +171,10 @@ class DAG:
                 new_node.add_parent(node)
         self.nodes.append(new_node)
 
-    def get_valid_transactions(self):
-        valid_transactions = []
-        for node in self.nodes:
-            if node.is_valid():
-                valid_transactions.append(node.transaction)
-        return valid_transactions
+def get_transactions(self):
+    return [node.transaction for node in self.nodes if node.is_valid()]
+
+
 
 class ParallelTransactionProcessor:
     def __init__(self, dag, bft_network):
@@ -139,6 +214,7 @@ def is_chain_valid(blockchain):
             if not transaction.is_valid():
                 return False
     return True
+
 
 def display_dashboard():
     print("==================================================")
@@ -186,37 +262,152 @@ def network_status():
     print("- 総トランザクション数: 10,000,000")
     print("==================================================")
 
-def main():
-    blockchain = [create_genesis_block()]
-    previous_block = blockchain[0]
+    print('Debug: main function started')
 
-    transaction_pool = []
-    dag = DAG()
-    bft_network = BFTNetwork(num_nodes=5)
-    processor = ParallelTransactionProcessor(dag, bft_network)
+    parser = argparse.ArgumentParser(description='HyperFlux Dashboard')
+    parser.add_argument('choice', type=int, choices=range(1, 8), help='Select functionality (1-7)')
+    args = parser.parse_args()
 
-    num_of_blocks_to_add = 10
+    print("==================================================")
+    print("HyperFlux Status: Initializing...")
+    print("[###----] Loading configuration...")
+    print("[#####---] Connecting to network...")
+    print("[########] Node started successfully...")
+    print("==================================================")
+    print("HyperFlux WEB interface: http://localhost:8080")
+    print("==================================================")
+    print("Dashboard:")
+    print("1. 🚀 Check node status")
+    print("2. 💸 Submit transaction")
+    print("3. 🌐 Check network status")
+    print("4. 📜 Smart contract management")
+    print("5. 🗳️ Governance")
+    print("6. 🌉 Cross-chain functionality")
+    print("7. ⚙️ Configuration")
+    print("==================================================")
 
-    for i in range(1, num_of_blocks_to_add + 1):
-        transaction_pool.append(Transaction(f"user_{i}", f"user_{i+1}", i * 10))
-        valid_transactions = processor.process_transactions(transaction_pool)
-        block_to_add = mine_block(previous_block, valid_transactions, difficulty=2)
-        blockchain.append(block_to_add)
-        previous_block = block_to_add
-        transaction_pool = []
-        bft_network.broadcast_block(block_to_add)
-        print(f"Block #{block_to_add.index} has been added to the blockchain!")
-        print(f"Hash: {block_to_add.hash}")
-        print(f"Transactions: {[str(tx) for tx in block_to_add.transactions]}")
+    choice = args.choice
 
-    while True:
+    if choice == 1:
         node_status()
-        address = "0x1234abcd"
-        amount = 50
+    elif choice == 2:
+        address = input("Recipient address: ")
+        amount = input("Transfer amount: ")
         send_transaction(address, amount)
+    elif choice == 3:
         network_status()
-        print("設定メニューは現在利用できません。")
-        print("無効な選択です。もう一度お試しください。")
+    elif choice == 4:
+        print("Smart Contract Management:")
+        print("1. Deploy a new smart contract")
+        print("2. Manage existing smart contracts")
+        print("3. View smart contract execution history")
+        print("4. Smart contract security auditing")
+    elif choice == 5:
+        print("Governance:")
+        print("1. Create a proposal")
+        print("2. Vote on an existing proposal")
+        print("3. View voting results")
+        print("4. Set governance parameters")
+    elif choice == 6:
+        print("Cross-chain functionality:")
+        print("1. List of supported blockchains")
+        print("2. Transfer assets to other blockchains")
+        print("3. Receive assets from other blockchains")
+        print("4. Display cross-chain transaction history")
+    elif choice == 7:
+        print("Configuration:")
+        print("1. General settings")
+        print("2. Network settings")
+        print("3. Security settings")
+        print("4. Notification settings")
+        print("5. Account settings")
+        print("6. Advanced settings")
+    else:
+        print("Invalid choice. Please try again.")
 
-if __name__ == "__main__":
+
+
+def main():
+    parser = argparse.ArgumentParser(description='HyperFlux: A high-performance blockchain system.')
+    parser.add_argument('command', choices=['status', 'send'], nargs='?', help='Command to execute')
+    parser.add_argument('--address', type=str, help='Destination address for sending tokens')
+    parser.add_argument('--amount', type=float, help='Amount of tokens to send')
+    args = parser.parse_args()
+
+    if args.command == 'status':
+        print('Node status:')
+        # Add code to display node status
+    elif args.command == 'send':
+        if not args.address or not args.amount:
+            print('Error: --address and --amount are required for send command')
+            return
+        print(f'Sending {args.amount} tokens to {args.address}')
+        # Add code to send tokens
+    else:
+        print("==================================================")
+        print("HyperFlux Status: Initializing...")
+        print("[###----] Loading configuration...")
+        print("[#####---] Connecting to network...")
+        print("[########] Node started successfully...")
+        print("==================================================")
+        print("HyperFlux WEB interface: http://localhost:8080")
+        print("==================================================")
+        print("Dashboard:")
+        print("1. 🚀 Check node status")
+        print("2. 💸 Submit transaction")
+        print("3. 🌐 Check network status")
+        print("4. 📜 Smart contract management")
+        print("5. 🗳️ Governance")
+        print("6. 🌉 Cross-chain functionality")
+        print("7. ⚙️ Configuration")
+        print("==================================================")
+        choice = input("Select functionality (1-7): ")
+        if choice == '1':
+            print('Node status:')
+            # Add code to display node status
+        elif choice == '2':
+            address = input("Recipient address: ")
+            amount = input("Transfer amount: ")
+            print(f'Sending {amount} tokens to {address}')
+            # Add code to send tokens
+        elif choice == '3':
+            print('Network status:')
+            # Add code to display network status
+        elif choice == '4':
+            print("Smart Contract Management:")
+            print("1. Deploy a new smart contract")
+            print("2. Manage existing smart contracts")
+            print("3. View smart contract execution history")
+            print("4. Smart contract security auditing")
+        elif choice == '5':
+            print("Governance:")
+            print("1. Create a proposal")
+            print("2. Vote on an existing proposal")
+            print("3. View voting results")
+            print("4. Set governance parameters")
+        elif choice == '6':
+            print("Cross-chain functionality:")
+            print("1. List of supported blockchains")
+            print("2. Transfer assets to other blockchains")
+            print("3. Receive assets from other blockchains")
+            print("4. Display cross-chain transaction history")
+        elif choice == '7':
+            print("Configuration:")
+            print("1. General settings")
+            print("2. Network settings")
+            print("3. Security settings")
+            print("4. Notification settings")
+            print("5. Account settings")
+            print("6. Advanced settings")
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == '__main__':
     main()
+
+
+if __name__ == '__main__':
+    main()
+
+    main()
+
