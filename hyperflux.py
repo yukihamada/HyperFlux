@@ -1,169 +1,74 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
-
+import argparse
+import hashlib
+import uuid
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+from flask import Flask, render_template, request, jsonify
 from bft_node import BFTNode
 from blockchain import Block, calculate_hash, create_genesis_block, is_chain_valid
 from transaction import Transaction
-import time
 from dag import DAG
-
-
-
-
 
 class BFTNetwork:
     def __init__(self, num_nodes):
+        """Initialize a BFT network with a given number of nodes."""
         self.nodes = [BFTNode(i) for i in range(num_nodes)]
+        self.executor = ThreadPoolExecutor(max_workers=num_nodes)
+        self.latest_status = None
 
+    async def update_status(self):
+        """Periodically update the status of the network."""
+        while True:
+            self.latest_status = await self.collect_status()
+            await asyncio.sleep(5)  # Update every 5 seconds
 
-
-from dashboard import display_dashboard, node_status, send_transaction, network_status, main
-
-
-
-if __name__ == "__main__":
-    main()
-
-def display_dashboard():
-    print("==================================================")
-    print("HyperFlux ステータス: 初期化中...")
-    print("[###----] 設定を読み込み中...")
-    print("[#####---] ネットワークに接続中...")
-    print("[########] ノードが正常に起動しました。")
-    print("==================================================")
-    print("ダッシュボード:")
-    print("1. 🚀 ノードのステータス確認")
-    print("2. 💸 取引を送信")
-    print("3. 🌐 ネットワークステータス確認")
-    print("4. ⚙️ 設定")
-    print("==================================================")
-    return choice
-
-def node_status():
-    print("==================================================")
-    print("ノードステータス:")
-    print("- 状態: 稼働中")
-    print("- 接続ピア数: 12")
-    print("- ブロック高: 654321")
-    print("- トランザクション数: 987654")
-    print("- 使用メモリ: 256MB")
-    print("- Uptime: 48時間")
-    print("==================================================")
-
-def send_transaction(address, amount):
-    print("==================================================")
-    print("取引送信:")
-    print(f"送信先アドレス: {address}")
-    print(f"送信するトークン量: {amount}")
-    print("トランザクションを送信中...")
-    transaction_id = "0xabcd1234efgh5678"
-    print(f"トランザクションID: {transaction_id}")
-    print("トランザクションが正常に送信されました。")
-    print("==================================================")
-
-def network_status():
-    print("==================================================")
-    print("ネットワークステータス:")
-    print("- アクティブノード数: 200")
-    print("- ネットワーク遅延: 平均50ms")
-    print("- トランザクション処理速度: 1秒間に8500トランザクション")
-    print("- 総トランザクション数: 10,000,000")
-    print("==================================================")
-
-import argparse
-
-def main():
-    print('Debug: main function started')
-
-    parser = argparse.ArgumentParser(description='HyperFlux Dashboard')
-    parser.add_argument('choice', type=int, choices=range(1, 8), help='Select functionality (1-7)')
-    args = parser.parse_args()
-
-    print("==================================================")
-    print("HyperFlux Status: Initializing...")
-    print("[###----] Loading configuration...")
-    print("[#####---] Connecting to network...")
-    print("[########] Node started successfully...")
-    print("==================================================")
-    print("HyperFlux WEB interface: http://localhost:8080")
-    print("==================================================")
-    print("Dashboard:")
-    print("1. 🚀 Check node status")
-    print("2. 💸 Submit transaction")
-    print("3. 🌐 Check network status")
-    print("4. 📜 Smart contract management")
-    print("5. 🗳️ Governance")
-    print("6. 🌉 Cross-chain functionality")
-    print("7. ⚙️ Configuration")
-    print("==================================================")
-
-    choice = args.choice
-
-    if choice == 1:
-        node_status()
-    elif choice == 2:
-        address = input("Recipient address: ")
-        amount = input("Transfer amount: ")
-        send_transaction(address, amount)
-    elif choice == 3:
-        network_status()
-    elif choice == 4:
-        print("Smart Contract Management:")
-        print("1. Deploy a new smart contract")
-        print("2. Manage existing smart contracts")
-        print("3. View smart contract execution history")
-        print("4. Smart contract security auditing")
-    elif choice == 5:
-        print("Governance:")
-        print("1. Create a new proposal")
-        print("2. Vote on existing proposals")
-        print("3. View proposal results")
-    elif choice == 6:
-        print("Cross-Chain Functionality:")
-        print("1. Bridge assets to another blockchain")
-        print("2. View cross-chain transaction history")
-    elif choice == 7:
-        print("Configuration:")
-        print("1. Update node settings")
-        print("2. Manage network connections")
-        print("3. View system logs")
-
-
-
+    async def collect_status(self):
+        """Collect the status from all nodes in the network."""
+        loop = asyncio.get_event_loop()
+        tasks = [loop.run_in_executor(self.executor, node.get_status) for node in self.nodes]
+        statuses = await asyncio.gather(*tasks)
+        return statuses
 
     def broadcast_block(self, block):
+        """Broadcast a block to all nodes in the network."""
         for node in self.nodes:
             node.receive_block(block)
 
-    def is_network_valid(self):
-        for node in self.nodes:
-
+        if current_block.previous_hash != previous_block.hash:
             return False
-        for parent in self.parents:
-            if not parent.is_valid():
+        for transaction in current_block.transactions:
+            if not transaction.is_valid():
                 return False
-        return True
+        if not self.latest_status:
+            return {
+                "active_nodes": 0,
+                "network_latency": 0.0,
+                "tx_per_second": 0,
+                "total_tx": 0
+            }
+        return self.latest_status
 
-class DAG:
-    def __init__(self):
-        self.nodes = []
+        return self.latest_status
 
-    def add_transaction(self, transaction):
-        new_node = DAGNode(transaction)
-        for node in self.nodes:
+        return self.latest_status
 
 
+        return self.latest_status
 
-
-class ParallelTransactionProcessor:
-    def __init__(self, dag, bft_network):
-        self.dag = dag
-        self.bft_network = bft_network
-
-    def process_transactions(self, transactions):
-        for transaction in transactions:
-            self.dag.add_transaction(transaction)
-        valid_transactions = self.dag.get_valid_transactions()
-        return valid_transactions
+        active_nodes = len(self.latest_status)
+        total_latency = sum(status['latency'] for status in self.latest_status)
+        total_tx_per_second = sum(status['tx_per_second'] for status in self.latest_status)
+        total_tx = sum(status['total_tx'] for status in self.latest_status)
+        return {
+            "active_nodes": active_nodes,
+            "network_latency": total_latency / active_nodes,
+            "tx_per_second": total_tx_per_second / active_nodes,
+            "total_tx": total_tx
+        }
 
 def create_genesis_block():
     genesis_transactions = [Transaction('system', 'user', 50)]
@@ -180,34 +85,99 @@ def mine_block(previous_block, transactions, difficulty):
             return Block(index, previous_block.hash, timestamp, transactions, hash)
         nonce += 1
 
-
-    print("==================================================")
+def generate_transaction_id():
+    return str(uuid.uuid4())
 
 def send_transaction(address, amount):
+    transaction_id = generate_transaction_id()
     print("==================================================")
     print("取引送信:")
     print(f"送信先アドレス: {address}")
     print(f"送信するトークン量: {amount}")
     print("トランザクションを送信中...")
-    transaction_id = "0xabcd1234efgh5678"
     print(f"トランザクションID: {transaction_id}")
     print("トランザクションが正常に送信されました。")
     print("==================================================")
+    return transaction_id
 
-def network_status():
+def network_status(bft_network):
+    status = bft_network.get_network_status()
     print("==================================================")
     print("ネットワークステータス:")
-    print("- アクティブノード数: 200")
-    print("- ネットワーク遅延: 平均50ms")
-    print("- トランザクション処理速度: 1秒間に8500トランザクション")
-    print("- 総トランザクション数: 10,000,000")
+    print(f"アクティブノード数: {status['active_nodes']}")
+    print(f"ネットワーク遅延: {status['network_latency']} ms")
+    print(f"毎秒トランザクション数: {status['tx_per_second']}")
+    print(f"総トランザクション数: {status['total_tx']}")
     print("==================================================")
 
-    print('Debug: main function started')
+    print("ネットワークステータス:")
+    print(f"- アクティブノード数: {status['active_nodes']}")
+    print(f"- ネットワーク遅延: 平均{status['network_latency']:.2f}ms")
+    print(f"- トランザクション処理速度: 1秒間に{status['tx_per_second']:.2f}トランザクション")
+    print(f"- 総トランザクション数: {status['total_tx']}")
+    print("==================================================")
 
+def display_node_status(node):
+    status = node.get_status()
+    print("Node status:")
+    print("==================================================")
+    print("State: Active")
+    print(f"Number of connected peers: {status['connected_peers']}")
+    print(f"Block Height: {status['block_height']}")
+    print(f"Number of transactions: {status['total_tx']}")
+    print(f"Memory Used: {status['memory_used']}MB")
+    print(f"Uptime: {status['uptime']} hours")
+    print("==================================================")
+
+def create_app(bft_network):
+    app = Flask(__name__)
+
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
+    @app.route('/node_status')
+    def node_status():
+        node = bft_network.nodes[0]
+        status = node.get_status()
+        return jsonify(status)
+
+    @app.route('/network_status')
+    def network_status():
+        status = bft_network.get_network_status()
+        return jsonify(status)
+
+    @app.route('/send_transaction', methods=['POST'])
+    def send_transaction():
+        address = request.form['address']
+        amount = request.form['amount']
+        transaction = Transaction(sender="system", receiver=address, amount=float(amount))
+        if transaction.is_valid() and transaction.zk_snark_proof():
+            bft_network.nodes[0].add_transaction(transaction)
+            return jsonify({"status": "success", "transaction_id": str(transaction)})
+        else:
+            return jsonify({"status": "failure", "message": "Invalid transaction"})
+
+    return app
+
+async def update_status(bft_network):
+    while True:
+        await bft_network.update_status()
+        await asyncio.sleep(5)
+
+    return app
+
+async def update_status(bft_network):
+    while True:
+        await bft_network.update_status()
+        await asyncio.sleep(5)
+
+async def cli_interface(bft_network):
     parser = argparse.ArgumentParser(description='HyperFlux Dashboard')
     parser.add_argument('choice', type=int, choices=range(1, 8), help='Select functionality (1-7)')
     args = parser.parse_args()
+
+    node = bft_network.nodes[0]  # 表示用に最初のノードを使用
 
     print("==================================================")
     print("HyperFlux Status: Initializing...")
@@ -215,7 +185,7 @@ def network_status():
     print("[#####---] Connecting to network...")
     print("[########] Node started successfully...")
     print("==================================================")
-    print("HyperFlux WEB interface: http://localhost:8080")
+    print("HyperFlux WEB interface: http://localhost:5000")
     print("==================================================")
     print("Dashboard:")
     print("1. 🚀 Check node status")
@@ -230,188 +200,40 @@ def network_status():
     choice = args.choice
 
     if choice == 1:
-        node_status()
+        display_node_status(node)
     elif choice == 2:
         address = input("Recipient address: ")
         amount = input("Transfer amount: ")
         send_transaction(address, amount)
     elif choice == 3:
-        network_status()
+        network_status(bft_network)
     elif choice == 4:
-        print("Smart Contract Management:")
-        print("1. Deploy a new smart contract")
-        print("2. Manage existing smart contracts")
-        print("3. View smart contract execution history")
-        print("4. Smart contract security auditing")
+        print("Smart contract management is not implemented yet.")
     elif choice == 5:
-        print("Governance:")
-        print("1. Create a proposal")
-        print("2. Vote on an existing proposal")
-        print("3. View voting results")
-        print("4. Set governance parameters")
+        print("Governance is not implemented yet.")
     elif choice == 6:
-        print("Cross-chain functionality:")
-        print("1. List of supported blockchains")
-        print("2. Transfer assets to other blockchains")
-        print("3. Receive assets from other blockchains")
-        print("4. Display cross-chain transaction history")
+        print("Cross-chain functionality is not implemented yet.")
     elif choice == 7:
-        print("Configuration:")
-        print("1. General settings")
-        print("2. Network settings")
-        print("3. Security settings")
-        print("4. Notification settings")
-        print("5. Account settings")
-        print("6. Advanced settings")
+        print("Configuration is not implemented yet.")
     else:
-        print("Invalid choice. Please try again.")
+        print("Invalid choice. Please select a number between 1 and 7.")
 
 
+async def main():
+    bft_network = BFTNetwork(num_nodes=200)  # ノード数を適宜設定
 
-def main():
-    parser = argparse.ArgumentParser(description='HyperFlux: A high-performance blockchain system.')
-    parser.add_argument('command', choices=['status', 'send'], nargs='?', help='Command to execute')
-    parser.add_argument('--address', type=str, help='Destination address for sending tokens')
-    parser.add_argument('--amount', type=float, help='Amount of tokens to send')
-    args = parser.parse_args()
-    if args.command == 'status':
-        display_node_status()
-        # Add code to display node status
-    elif args.command == 'send':
-        if not args.address or not args.amount:
-            print('Error: --address and --amount are required for send command')
-            return
-        print(f'Sending {args.amount} tokens to {args.address}')
-        # Add code to send tokens
-    else:
-        print("==================================================")
-        print("HyperFlux Status: Initializing...")
-        print("[###----] Loading configuration...")
-        print("[#####---] Connecting to network...")
-        print("[########] Node started successfully...")
-        print("==================================================")
-        print("HyperFlux WEB interface: http://localhost:8080")
-        print("==================================================")
-        display_node_status()
-        print("1. 🚀 Check node status")
-        print("2. 💸 Submit transaction")
-        print("3. 🌐 Check network status")
-        print("4. 📜 Smart contract management")
-        print("5. 🗳️ Governance")
-        print("6. 🌉 Cross-chain functionality")
-        print("7. ⚙️ Configuration")
-        print("==================================================")
-        choice = input("Select functionality (1-7): ")
-        if choice == '1':
-            print('Node status:')
-            # Add code to display node status
-        elif choice == '2':
-            address = input("Recipient address: ")
-            amount = input("Transfer amount: ")
-            print(f'Sending {amount} tokens to {address}')
-            # Add code to send tokens
-        elif choice == '3':
-            print('Network status:')
-            # Add code to display network status
-        elif choice == '4':
-            print("Smart Contract Management:")
-            print("1. Deploy a new smart contract")
-            print("2. Manage existing smart contracts")
-            print("3. View smart contract execution history")
-            print("4. Smart contract security auditing")
-        elif choice == '5':
-            print("Governance:")
-            print("1. Create a proposal")
-            print("2. Vote on an existing proposal")
-            print("3. View voting results")
-            print("4. Set governance parameters")
-        elif choice == '6':
-            print("Cross-chain functionality:")
-            print("1. List of supported blockchains")
-            print("2. Transfer assets to other blockchains")
-            print("3. Receive assets from other blockchains")
-            print("4. Display cross-chain transaction history")
-        elif choice == '7':
-            print("Configuration:")
-            print("1. General settings")
-            print("2. Network settings")
-            print("3. Security settings")
-            print("4. Notification settings")
-            print("5. Account settings")
-            print("6. Advanced settings")
-        else:
-            print("Invalid choice. Please try again.")
+    app = create_app(bft_network)
+    loop = asyncio.get_event_loop()
 
-def display_node_status():
-    print("Node status:")
-    print("==================================================")
-    print("State: Active")
-    print("Number of connected peers: 12")
-    print("Block Height: 654321")
-    print("Number of transactions: 987654")
-    print("Memory Used: 256MB")
-    print("Uptime: 48 hours")
-    print("==================================================")
+    # 非同期にステータスを更新
+    loop.create_task(update_status(bft_network))
 
+    # CLIインターフェースを非同期で実行
+    loop.create_task(cli_interface(bft_network))
 
-    print('Cross-chain functionality:')
-    print("Configuration:")
-    print("1. General settings")
-    print("2. Network settings")
-    print("3. Security settings")
-    print("4. Notification settings")
-    print("5. Account settings")
-    print("6. Advanced settings")
-        else:
-            print("Invalid choice. Please try again.")
+    # Flaskアプリケーションを実行
+    app.run(host='0.0.0.0', port=5000)
 
-        print("1. 🚀 Check node status")
-        print("2. 💸 Submit transaction")
-        print("3. 🌐 Check network status")
-        print("4. 📜 Smart contract management")
-        print("5. 🗳️ Governance")
-        print("6. 🌉 Cross-chain functionality")
-        print("7. ⚙️ Configuration")
-        print("==================================================")
-        choice = input("Select functionality (1-7): ")
-        if choice == '1':
-            print('Node status:')
-            # Add code to display node status
-        elif choice == '2':
-            address = input("Recipient address: ")
-            amount = input("Transfer amount: ")
-            print(f'Sending {amount} tokens to {address}')
-            # Add code to send tokens
-        elif choice == '3':
-            print('Network status:')
-            # Add code to display network status
-        elif choice == '4':
-            print("Smart Contract Management:")
-            print("1. Deploy a new smart contract")
-            print("2. Manage existing smart contracts")
-            print("3. View smart contract execution history")
-            print("4. Smart contract security auditing")
-        elif choice == '5':
-            print("Governance:")
-            print("1. Create a proposal")
-            print("2. Vote on an existing proposal")
-            print("3. View voting results")
-            print("4. Set governance parameters")
-        elif choice == '6':
-            print("Cross-chain functionality:")
-            print("1. List of supported blockchains")
-            print("2. Transfer assets to other blockchains")
-            print("3. Receive assets from other blockchains")
-            print("4. Display cross-chain transaction history")
-        elif choice == '7':
-            print("Configuration:")
-            print("1. General settings")
-            print("2. Network settings")
-            print("3. Security settings")
-            print("4. Notification settings")
-            print("5. Account settings")
-            print("6. Advanced settings")
-        else:
-            print("Invalid choice. Please try again.")
-
+if __name__ == "__main__":
+    asyncio.run(main())
 
