@@ -232,7 +232,7 @@ async def main():
     loop.create_task(cli_interface(bft_network))
 
     # Flaskアプリケーションを実行
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5001)
 
 if __name__ == "__main__":
     asyncio.run(main())
